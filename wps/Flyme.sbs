@@ -1,0 +1,87 @@
+# SBS File
+# Theme name: Flyme Music
+# By: zhkailing
+# Platform: Meizu M9 FlymeOS(640x960x32)
+# Version: 1.1
+# Graphics: Meizu M9 Meida player
+# Last Updated: 2012,09,18
+
+
+%Vi(-,0,118,640,698,-)
+
+#Pre-Load Images
+%xl(ic_play,ic_mp_play.bmp,240,0,5)
+%xl(ic_forward_pressed,ic_tab_forward_pressed.bmp,0,0)
+%xl(ic_Loud,ic_sound_Loud.bmp,0,0)
+%xl(ic_Loud_Normal,ic_sound_Normal.bmp,0,0)
+%xl(ic_Loud_Low,ic_sound_Low.bmp,0,0)
+%xl(ic_Loud_None,ic_sound_None.bmp,0,0)
+%xl(ic_repeat,ic_mp_repeat_btn.bmp,0,0,5)
+%xl(ic_volumebar,ic_mp_volumebar.bmp,0,0,17)
+%xl(ic_shuffle_on,ic_mp_shuffle_on_btn.bmp,0,0)
+%xl(ic_shuffle_off,ic_mp_shuffle_off_btn.bmp,0,0)
+%xl(ic_pre_pressed,ic_media_previous_pressed.bmp,120,0)
+%xl(ic_next_pressed,ic_media_next_pressed.bmp,360,0)
+%xl(ic_playlist_pressed,ic_tab_playlist_pressed.bmp,0,0)
+%xl(ic_menu_pressed,ic_tab_menu_pressed.bmp,0,0)
+
+# Load Fonts
+%Fl(2,35-WenQuanYiMicroHei.fnt)
+%Fl(3,25-WenQuanYiMicroHei.fnt)
+
+#  shuffle
+%V(28,27,64,64,-)
+%?ps<%xd(ic_shuffle_on)|%xd(ic_shuffle_off)>
+%T(0,0,64,64,shuffle)
+
+#  Show media info on titlebar
+%?mp<%Vd(date)%Vd(time)|%Vd(nowplaying)%Vd(playlist)>
+#  data,time info
+%Vl(date,92,22,456,37,2)%Vf(adaaad)
+%ac%cY年 %cb %cd日  %ca
+%Vl(time,92,59,456,40,2)%Vf(adaaad)
+%ac%?cf<%cH:%cM:%cS|%cl:%cM:%cS %cP>
+
+#  current track info
+%Vl(nowplaying,92,22,456,37,2)%Vf(adaaad)
+%s%ac%?ia<%s%ia|%?d(2)<%s%d(2)|正在播放>>
+%Vl(playlist,92,59,456,40,2)%Vf(adaaad)
+%s%ac%?it<%s%it|%?fn<%s%fn|%s列表： %?pn<%pn|临时播放列表>>>
+
+#  repeat
+%V(548,27,64,64,-)
+%?mm<%xd(ic_repeat,1)|%xd(ic_repeat,2)|%xd(ic_repeat,3)|%xd(ic_repeat,4)|%xd(ic_repeat,5)>
+%T(0,0,64,64,repmode)
+
+#  progressbar
+%V(0,115,640,4,-)
+%pb(0,0,640,4,ic_progressbar.bmp)
+
+#  playmode
+%V(48,838,544,64,-)
+%xd(ic_play,%mp)
+%T(240,0,64,64,play)
+%T(240,0,64,64,stop,long_press)
+
+#  ff,rew
+%T(prev_btn,120,0,64,64,wps_prev)
+%?Tl(prev_btn,0.3)<%xd(ic_pre_pressed)>
+%T(next_btn,360,0,64,64,wps_next)
+%?Tl(next_btn,0.3)<%xd(ic_next_pressed)>
+
+# forward button & Loud icon
+%T(forward_btn,0,0,64,64,menu)
+%T(forward_btn,0,0,64,64,contextmenu,long_press)
+%?Tl(forward_btn,0.3)<%xd(ic_forward_pressed)>
+
+%V(528,820,64,82,3)
+%?if(%pv, >=, -10)<%xd(ic_Loud)|%?if(%pv, >, -50)<%xd(ic_Loud_Normal)|%?if(%pv, >, -99)<%xd(ic_Loud_Low)|%xd(ic_Loud_None)>>>
+%V(528,820,64,82,3)%Vf(adaaad)
+%T(volumeshow,0,18,64,64,none)
+%T(volumeshow,0,18,64,64,resumeplayback,long_press)
+%?Tl(volumeshow,4)<%ac%pv db>
+
+
+
+
+

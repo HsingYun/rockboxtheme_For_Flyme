@@ -1,0 +1,109 @@
+# WPS Document
+# Theme name: Flyme Music
+# By: zhkailing
+# Platform: Meizu M9 FlymeOS(640x960x32)
+# Version: 1.1
+# Graphics: Meizu M9 Meida player
+# Last Updated: 2012,09,18
+
+# Status Bar Disabled
+%wd
+
+#Load Background
+%X(pic_mp_bg.bmp)
+
+#Pre-Load Images
+%xl(ic_play,ic_mp_play.bmp,120,0,5)
+%xl(ic_repeat,ic_mp_repeat_btn.bmp,0,0,5)
+%xl(ic_volumebar,ic_mp_volumebar.bmp,0,0,17)
+%xl(ic_shuffle_on,ic_mp_shuffle_on_btn.bmp,0,0)
+%xl(ic_shuffle_off,ic_mp_shuffle_off_btn.bmp,0,0)
+%xl(ic_pre_pressed,ic_media_previous_pressed.bmp,0,0)
+%xl(ic_next_pressed,ic_media_next_pressed.bmp,240,0)
+%xl(ic_playlist_pressed,ic_tab_playlist_pressed.bmp,0,0)
+%xl(ic_menu_pressed,ic_tab_menu_pressed.bmp,0,0)
+%xl(pic_albumcover_H_T,pic_albumcover_H.bmp,3,0)
+%xl(pic_albumcover_H_B,pic_albumcover_H.bmp,3,405)
+%xl(pic_albumcover_V_L,pic_albumcover_V.bmp,0,0)
+%xl(pic_albumcover_V_R,pic_albumcover_V.bmp,405,0)
+
+# Load Fonts
+%Fl(2,35-WenQuanYiMicroHei.fnt)
+%Fl(3,25-WenQuanYiMicroHei.fnt)
+
+#  shuffle
+%V(28,27,64,64,-)
+%?ps<%xd(ic_shuffle_on)|%xd(ic_shuffle_off)>
+%T(0,0,64,64,shuffle)
+
+#  repeat
+%V(548,27,64,64,-)
+%?mm<%xd(ic_repeat,1)|%xd(ic_repeat,2)|%xd(ic_repeat,3)|%xd(ic_repeat,4)|%xd(ic_repeat,5)>
+%T(0,0,64,64,repmode)
+
+#  progressbar
+%V(0,104,640,26,-)
+%pb(0,11,640,4,ic_progressbar.bmp)
+%T(pb_touch,0,0,640,26,progressbar)
+
+#  volumebar
+%V(92,753,456,63,-)
+%xd(ic_volumebar,%pv,0)
+%T(0,0,456,63,volume)
+
+#  playmode
+%V(168,838,304,64,-)
+%xd(ic_play,%mp)
+%T(120,0,64,64,play)
+%T(120,0,64,64,stop,long_press)
+
+#  ff,rew
+%T(prev_btn,0,0,64,64,prev)
+%?Tl(prev_btn,0.5)<%xd(ic_pre_pressed)>
+%T(0,0,64,64,rwd,repeat_press)
+%T(next_btn,240,0,88,92,next)
+%?Tl(next_btn,0.5)<%xd(ic_next_pressed)>
+%T(240,0,64,64,ffwd,repeat_press)
+
+#  browse file & playlist
+%V(20,753,64,64,-)
+%T(playlist_btn,0,0,64,64,playlist)
+%?Tl(playlist_btn,0.5)<%xd(ic_playlist_pressed)>
+%T(0,0,64,64,browse,long_press)
+
+#  contextmenu & menu
+%V(556,753,64,64,-)
+%T(menu_btn,0,0,64,64,contextmenu)
+%?Tl(menu_btn,0.5)<%xd(ic_menu_pressed)>
+%T(0,0,64,64,menu,long_press)
+
+#  Show media info on titlebar
+%V(92,22,456,37,2)%Vf(adaaad)
+%s%ac%?it<%it|%fn>
+%T(Title_touch,0,0,456,37,none)
+%V(112,59,416,40,2)%Vf(adaaad)
+%s%ac%?ia<%ia|%?d(2)<%d(2)|%(root%)>> %?id<%id|%?d(1)<%d(1)|%(root%)>>
+%T(Artist_touch,0,0,416,40,none)
+
+# show playtime info
+%?Tl(pb_touch,2)<%Vd(playtime)>
+%?Tl(Title_touch,2)<%Vd(playtime)>
+%?Tl(Artist_touch,2)<%Vd(playtime)>
+
+#  playtime info viewport
+%Vl(playtime,0,93,640,20,3)%Vf(adaaad)
+%al%pc%ac%pr%ar%pt
+
+#  Show media info
+%V(168,817,304,21,3)%Vf(adaaad)
+%ac%?fv<%(vbr%)|>%fbKbps  %fkKHz  %fc
+%V(168,705,304,30,3)
+%s%?It<%s%?It<%ac 下一首：  %It|%ac 下一首：  %Fn>|%?Fn<%s%?It<%ac 下一首：  %It|%ac 下一首：  %Fn>|>>
+
+#  album art
+%V(116,198,408,408,-)
+%Cl(3,3,404,404,c,c)
+%Cd
+%?C<%xd(pic_albumcover_V_L)%xd(pic_albumcover_V_R)%xd(pic_albumcover_H_T)%xd(pic_albumcover_H_B)>
+
+
