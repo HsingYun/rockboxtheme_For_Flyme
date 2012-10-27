@@ -2,32 +2,44 @@
 # Theme name: Flyme Music
 # By: zhkailing
 # Platform: Meizu M9 FlymeOS(640x960x32)
-# Version: 1.1
+# Version: 1.3
 # Graphics: Meizu M9 Meida player
-# Last Updated: 2012,09,18
+# Last Updated: 2012,10,28
 
 # Status Bar Disabled
 %wd
 
-#Load Background
-%X(pic_mp_bg.bmp)
+# Set Backdrop Layer
+#  Load Background
+%V(0,0,640,198,-) %VB 
+%x(backdrop_U,pic_mp_bg_1.bmp,0,0)
+%V(0,198,116,408,-) %VB 
+%x(backdrop_L,pic_mp_bg_2.bmp,0,0)
+%V(524,198,116,408,-) %VB 
+%x(backdrop_R,pic_mp_bg_3.bmp,0,0)
+%V(0,606,640,307,-) %VB 
+%x(backdrop_B,pic_mp_bg_4.bmp,0,0)
 
-#Pre-Load Images
+#  album art
+%V(116,198,408,408,-) %VB
+%Cl(0,0,408,408,c,c)
+%Cd
+
+# Set Foreground Layer
+%V(0,0,640,913,-)
+
+#  Pre-Load Images
 %xl(ic_play,ic_mp_play.bmp,120,0,5)
 %xl(ic_repeat,ic_mp_repeat_btn.bmp,0,0,5)
-%xl(ic_volumebar,ic_mp_volumebar.bmp,0,0,17)
+%xl(ic_volumebar_slider,ic_volumebar_slider.bmp,0,0)
 %xl(ic_shuffle_on,ic_mp_shuffle_on_btn.bmp,0,0)
 %xl(ic_shuffle_off,ic_mp_shuffle_off_btn.bmp,0,0)
 %xl(ic_pre_pressed,ic_media_previous_pressed.bmp,0,0)
 %xl(ic_next_pressed,ic_media_next_pressed.bmp,240,0)
 %xl(ic_playlist_pressed,ic_tab_playlist_pressed.bmp,0,0)
 %xl(ic_menu_pressed,ic_tab_menu_pressed.bmp,0,0)
-%xl(pic_albumcover_H_T,pic_albumcover_H.bmp,3,0)
-%xl(pic_albumcover_H_B,pic_albumcover_H.bmp,3,405)
-%xl(pic_albumcover_V_L,pic_albumcover_V.bmp,0,0)
-%xl(pic_albumcover_V_R,pic_albumcover_V.bmp,405,0)
 
-# Load Fonts
+#  Load Fonts
 %Fl(2,35-WenQuanYiMicroHei.fnt)
 %Fl(3,25-WenQuanYiMicroHei.fnt)
 
@@ -46,10 +58,14 @@
 %pb(0,11,640,4,ic_progressbar.bmp)
 %T(pb_touch,0,0,640,26,progressbar)
 
+#  album art case
+%V(116,198,408,408,-)
+%?C<%x(case, case.bmp, 0, 0)|%x(backdrop_case,pic_mp_bg_case.bmp,0,0)>
+
 #  volumebar
-%V(92,753,456,63,-)
-%xd(ic_volumebar,%pv,0)
-%T(0,0,456,63,volume)
+%V(114,753,414,63,-)
+%pv(0,0,414,63,ic_volumebar.bmp,slider,ic_volumebar_slider)
+%T(0,0,414,63,volume)
 
 #  playmode
 %V(168,838,304,64,-)
@@ -100,10 +116,6 @@
 %V(168,705,304,30,3)
 %s%?It<%s%?It<%ac 下一首：  %It|%ac 下一首：  %Fn>|%?Fn<%s%?It<%ac 下一首：  %It|%ac 下一首：  %Fn>|>>
 
-#  album art
-%V(116,198,408,408,-)
-%Cl(3,3,404,404,c,c)
-%Cd
-%?C<%xd(pic_albumcover_V_L)%xd(pic_albumcover_V_R)%xd(pic_albumcover_H_T)%xd(pic_albumcover_H_B)>
+
 
 
