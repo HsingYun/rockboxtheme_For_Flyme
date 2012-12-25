@@ -11,16 +11,18 @@
 
 #Pre-Load Images
 %xl(ic_play,ic_mp_play.bmp,240,0,5)
+%xl(ic_forward,ic_tab_forward.bmp,0,0)
 %xl(ic_forward_pressed,ic_tab_forward_pressed.bmp,0,0)
 %xl(ic_Loud,ic_sound_Loud.bmp,0,0)
 %xl(ic_Loud_Normal,ic_sound_Normal.bmp,0,0)
 %xl(ic_Loud_Low,ic_sound_Low.bmp,0,0)
 %xl(ic_Loud_None,ic_sound_None.bmp,0,0)
 %xl(ic_repeat,ic_mp_repeat_btn.bmp,0,0,5)
-%xl(ic_volumebar,ic_mp_volumebar.bmp,0,0,17)
 %xl(ic_shuffle_on,ic_mp_shuffle_on_btn.bmp,0,0)
 %xl(ic_shuffle_off,ic_mp_shuffle_off_btn.bmp,0,0)
+%xl(ic_pre,ic_media_previous.bmp,120,0)
 %xl(ic_pre_pressed,ic_media_previous_pressed.bmp,120,0)
+%xl(ic_next,ic_media_next.bmp,360,0)
 %xl(ic_next_pressed,ic_media_next_pressed.bmp,360,0)
 %xl(ic_playlist_pressed,ic_tab_playlist_pressed.bmp,0,0)
 %xl(ic_menu_pressed,ic_tab_menu_pressed.bmp,0,0)
@@ -31,6 +33,7 @@
 
 #  shuffle
 %V(28,27,64,64,-)
+
 %?ps<%xd(ic_shuffle_on)|%xd(ic_shuffle_off)>
 %T(0,0,64,64,shuffle)
 
@@ -59,6 +62,9 @@
 
 #  playmode
 %V(48,838,544,64,-)
+%xd(ic_pre)
+%xd(ic_next)
+%xd(ic_forward)
 %xd(ic_play,%mp)
 %T(240,0,64,64,play)
 %T(240,0,64,64,stop,long_press)
@@ -74,14 +80,10 @@
 %T(forward_btn,0,0,64,64,contextmenu,long_press)
 %?Tl(forward_btn,0.3)<%xd(ic_forward_pressed)>
 
-%V(528,820,64,82,3)
+
+#%?if(%pv, >=, -10)<%xd(ic_Loud)|%?if(%pv, >, -50)<%xd(ic_Loud_Normal)|%?if(%pv, >, -99)<%xd(ic_Loud_Low)|%xd(ic_Loud_None)>>>
+%V(528,840,64,62,3)%Vf(adaaad)
 %?if(%pv, >=, -10)<%xd(ic_Loud)|%?if(%pv, >, -50)<%xd(ic_Loud_Normal)|%?if(%pv, >, -99)<%xd(ic_Loud_Low)|%xd(ic_Loud_None)>>>
-%V(528,820,64,82,3)%Vf(adaaad)
-%T(volumeshow,0,18,64,64,none)
-%T(volumeshow,0,18,64,64,resumeplayback,long_press)
-%?Tl(volumeshow,4)<%ac%pv db>
-
-
-
-
-
+%T(volumeshow,0,18,64,62,resumeplayback,long_press)
+%V(528,820,64,20,3)%Vf(adaaad)
+%?Tl(volumeshow,4)<%ac%pv db|>
